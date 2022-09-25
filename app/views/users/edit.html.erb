@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>User info</h2>
+
       <%if @user.errors.any? %>
         <div id="errors">
           <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
@@ -12,15 +12,18 @@
           </ul>
         </div>
       <% end %>
+
+      <h2>User info</h2>
       <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
         <div>Name</div>
-        <div class="field"><%= f.text_field :name %></div>
+        <%= f.text_field :name, class: "form-control" %>
         <div>Image</div>
         <%= f.file_field :profile_image, accept: "image/*" %>
         <div>Introduction</div>
-        <div class="field"><%= f.text_area :introduction %></div>
-        <input class="btn btn-success btn-3sm" type="submit" value="Update User">
+        <%= f.text_area :introduction, class: "form-control" %>
+        <%= f.submit "Update User", class: "btn btn-secondary btn-3sm" %>
       <% end %>
+
     </div>
   </div>
 </div>
